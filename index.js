@@ -2,16 +2,11 @@
 import { Issuer, generators } from 'openid-client';
 
 const getClient = async () => {
-    // const options = {
-    //     "clientId": "58b556d5-81fd-44d2-9de9-829beb95bf05",
-    //     "clientSecret": "SfZ4LLhNGs8DoXUwV_jHe9VZn7",
-    //     "issuer": "https://427cc658-ddf8-4e5e-93b3-c038c13fac19.apse1.login.affinidi.io",
-    //     "redirect_uri": "http://localhost:3000/login/affinidi/callback",
-    // }
+
     const options = 
     {
-        "clientId": "809edb2f-53fb-41bf-af47-88994eb237d9",
-        "issuer": "https://427cc658-ddf8-4e5e-93b3-c038c13fac19.apse1.login.affinidi.io",
+        "clientId": PROVIDER_CLIENT_ID,
+        "issuer": PROVIDER_ISSUER,
         "code_verifier": "affinidissoabc-BjG9QYupl0gSZC10OTyCSuZxOskG36uJrlPFKrn858s",
         "redirect_uri": "http://localhost:3000/login/affinidi/callback",
     }
