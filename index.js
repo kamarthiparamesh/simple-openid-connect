@@ -84,9 +84,9 @@ const runCode = async () => {
     //Step 3 : From the Callback URL copy the Code, State & also copy the code_verifier while generating Auth URL at step 1
 
     //Step 3 : paste the values here, comment step 1 code and run
-    const code = "<CODE_HERE>";
-    const state = "<STATE_HERE>";
-    const code_verifier = "<CODE_VERIFIER_HERE>";
+    const code = "";
+    const state = "";
+    const code_verifier = "";
     if (code && state && code_verifier) {
         Step3(code, state, code_verifier);
     }
