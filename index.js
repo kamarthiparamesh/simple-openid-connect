@@ -5,9 +5,8 @@ const getClient = async () => {
 
     const options = 
     {
-        "clientId": PROVIDER_CLIENT_ID,
-        "issuer": PROVIDER_ISSUER,
-        "code_verifier": "affinidissoabc-BjG9QYupl0gSZC10OTyCSuZxOskG36uJrlPFKrn858s",
+        "clientId": process.env.PROVIDER_CLIENT_ID,
+        "issuer": process.env.PROVIDER_ISSUER,
         "redirect_uri": "http://localhost:3000/login/affinidi/callback",
     }
 
