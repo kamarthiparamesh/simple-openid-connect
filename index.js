@@ -12,7 +12,7 @@ const getClient = async () => {
     {
         "clientId": process.env.PROVIDER_CLIENT_ID,
         "issuer": process.env.PROVIDER_ISSUER,
-        "redirect_uri": "http://localhost:3000/login/affinidi/callback",
+        "redirect_uri": process.env.PROVIDER_CALLBACK_URL,
     }
 
     const affinidi = await Issuer.discover(options.issuer);
@@ -45,12 +45,12 @@ const getAuthUrl = async () => {
 const getToken = async (params) => {
 
     const client = await getClient();
-    const tokenSet = await client.callback('http://localhost:3000/login/affinidi/callback', params, params);
+    const tokenSet = await client.callback(process.env.PROVIDER_CALLBACK_URL, params, params);
     // const tokenSet = await client.grant(
     //     {
     //       grant_type: 'authorization_code',
     //       code: params.code,
-    //       redirect_uri: 'http://localhost:3000/login/affinidi/callback',
+    //       redirect_uri: process.env.PROVIDER_CALLBACK_URL,
     //       code_verifier: params.code_verifier,
     //     }
     //   );
@@ -87,7 +87,9 @@ const runCode = async () => {
     const code = "<CODE_HERE>";
     const state = "<STATE_HERE>";
     const code_verifier = "<CODE_VERIFIER_HERE>";
-    //Step3(code, state, code_verifier);
+    if (code && state && code_verifier) {
+        Step3(code, state, code_verifier);
+    }
 }
 
 
