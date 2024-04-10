@@ -3,12 +3,22 @@
 
 This uses [openid-client](https://www.npmjs.com/package/openid-client) package to do OAuth2 using PKCE flow. 
 
+## Setup
+
+1. Create `.env` using below command
+```
+cp .env.example .env
+```
+2. Create login configurations in Affinidi portal
+
+3. Paste CLIENT_ID & ISSUER in .env file
+
+
 ## Understand
 
 1. Get Auth URL
 ```
-const url = await getAuthUrl();
-console.log(url);
+Step1()
 ```
 
 2. Complete flow of AUth URL 
@@ -20,15 +30,10 @@ console.log(url);
 5. paste the values here, comment step 1 code and run
 
 ```
-const token = await getToken({
-    code: "<CODE_HERE>"
-    , state: "<STATE_HERE>"
-    , code_verifier: "<CODE_VERIFIER_HERE>"
-})
-
-const jwt = parseJwt(token.id_token);
-
-console.log(jwt);
+const code = "<CODE_HERE>";
+const state = "<STATE_HERE>";
+const code_verifier = "<CODE_VERIFIER_HERE>";
+Step3(code, state, code_verifier);
 ```
 
 ## Install & Run

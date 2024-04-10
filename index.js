@@ -1,9 +1,14 @@
 
 import { Issuer, generators } from 'openid-client';
+import 'dotenv/config';
+
+function parseJwt(token) {
+    return JSON.parse(Buffer.from(token.split('.')[1], 'base64').toString());
+}
 
 const getClient = async () => {
 
-    const options = 
+    const options =
     {
         "clientId": process.env.PROVIDER_CLIENT_ID,
         "issuer": process.env.PROVIDER_ISSUER,
@@ -52,34 +57,38 @@ const getToken = async (params) => {
 
     console.log('received and validated tokens %j', tokenSet);
     console.log('validated ID Token claims %j', tokenSet.claims());
+    return tokenSet;
 }
 
-const process = async () => {
-
-    //Step 1: Get Auth url
+const Step1 = async () => {
     const url = await getAuthUrl();
     console.log(url);
+}
 
-    //Step 2: Complete flow of AUth URL 
-    
-    //Step 3 : From the Callback URL copy the Code, State & also copy the code_verifier while generating Auth URL at step 1
-
-    //Step 3 : paste the values here, comment step 1 code and run
+const Step3 = async (code, state, code_verifier) => {
     const token = await getToken({
-        code: "ory_ac_p3bmYdBeUcfmv9iNWolmeDm-la0fo18DoW0bn9J-ods.PJznh1JQ-Q7_0e4-AsxgZ-DkZL5VHPv53RUPqwP06go"
-        , state: "-KvG9F3DqzDG4hWKmZdYvj_Nx1VcSLW4Rj5K7rSyF-M"
-        , code_verifier: "EFG__Pa8_DTtejaXdXSuTYSa9ko2TpCAv_RVCQ2Vyq0"
+        code, state, code_verifier
     })
 
     const jwt = parseJwt(token.id_token);
-
     console.log(jwt);
-
 }
 
-function parseJwt(token) {
-    return JSON.parse(Buffer.from(token.split('.')[1], 'base64').toString());
+const runCode = async () => {
+
+    //Step 1: Get Auth url
+    Step1()
+
+    //Step 2: Complete flow of AUth URL 
+
+    //Step 3 : From the Callback URL copy the Code, State & also copy the code_verifier while generating Auth URL at step 1
+
+    //Step 3 : paste the values here, comment step 1 code and run
+    const code = "<CODE_HERE>";
+    const state = "<STATE_HERE>";
+    const code_verifier = "<CODE_VERIFIER_HERE>";
+    //Step3(code, state, code_verifier);
 }
 
 
-process();
+runCode();
