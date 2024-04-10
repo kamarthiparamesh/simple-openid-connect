@@ -79,7 +79,7 @@ const runCode = async () => {
     //Step 1: Get Auth url
     Step1()
 
-    //Step 2: Complete flow of AUth URL 
+    //Step 2: Copy the code-verifier from the console log and Complete flow of AUth URL 
 
     //Step 3 : From the Callback URL copy the Code, State & also copy the code_verifier while generating Auth URL at step 1
 
